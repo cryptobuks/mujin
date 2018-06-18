@@ -1,22 +1,14 @@
 import * as React from 'react';
-import * as Redux from 'react-redux';
-import { History } from 'history';
 
-import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux';
 import Routes from '../routes';
+import { ApolloProvider } from 'react-apollo';
 
 interface IRootType {
-  store: Redux.Store<any>;
-  history: History
+  client: any
 };
 
-export default function Root({ store, history }: IRootType) {
-  return (
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
+export default function Root({ client }: IRootType) {
+  return (<ApolloProvider client={client}>
         <Routes />
-      </ConnectedRouter>
-    </Provider>
-  );
+    </ApolloProvider>)
 }
